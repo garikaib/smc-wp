@@ -1,0 +1,256 @@
+/* SMC Homepage Specific Styles */
+
+#smc-home-wrapper {
+    overflow-x: hidden;
+    background-color: #fff;
+    width: 100% !important;
+}
+
+/* Ensure Avada wrapper doesn't restrict full width on this page */
+.page-template-template-home #wrapper,
+.page-template-template-home #main {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.smc-hero-slider {
+    position: relative;
+    min-height: 85vh;
+    background: linear-gradient(135deg, #251f52 0%, #322b6b 100%);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    overflow: hidden;
+    padding: 0 5%;
+}
+
+.smc-slide {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.smc-hero-content {
+    flex: 0 0 50%;
+    padding-right: 40px;
+}
+
+.smc-hero-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.smc-hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.smc-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.smc-btn-primary {
+    background-color: #FF6D43;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 109, 67, 0.3);
+}
+
+.smc-btn-primary:hover {
+    background-color: #e6552e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 109, 67, 0.4);
+}
+
+/* Hero Slider Interactions */
+.smc-hero-interactions {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 600px;
+    z-index: 2;
+}
+
+/* Text List / Carousel logic */
+.hero-text-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+    /* Text behind image? No, wait: "text will be behind the image on the right" */
+    /* If text is behind image, then image z-index > text z-index.
+       Let's manage z-indices carefully. */
+    position: relative;
+    z-index: 1;
+    margin-right: -50px;
+    /* Overlap image */
+}
+
+.hero-text-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+.hero-text-item.active {
+    background: #fff;
+    color: #322B6B;
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    /* Active text pops forward slightly? Or stays behind image? */
+}
+
+/* Replicate "Scroll up" behavior: 
+   Actually, the requirement is "scrolls up to the top while the item that was at the top... will be now at the bottom".
+   This implies a visual reordering or a translateY circulation.
+   For simplicity and smooth animation, we'll keep them static in DOM but animate opacity/scale 
+   to highlight the "current" point, which matches CoachHub's visual style of a list where one is active.
+   
+   If specifically "scrolls up", we might need a container translation. 
+   Let's stick to the list highlight first as it's cleaner, but if "scroll" is strict, 
+   we can animate the container. Code below assumes static list with class updates.
+*/
+
+.hero-text-item .icon {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.hero-text-item.active .icon {
+    background: #FF6D43;
+    color: #fff;
+}
+
+.hero-text-item .text {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Image Slider logic */
+.hero-image-list {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    z-index: 5;
+    /* Image in front of text */
+}
+
+.hero-image-item {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-width: 100%;
+    height: auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+}
+
+.hero-image-item img {
+    max-height: 600px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.3));
+}
+
+/* Active State: Slide Up In */
+.hero-image-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 10;
+}
+
+/* Slide Out Right State */
+.hero-image-item.slide-out {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.6s ease-in;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .smc-hero-title {
+        font-size: 48px;
+    }
+
+    .smc-hero-slider {
+        min-height: 70vh;
+        flex-direction: column;
+        padding: 60px 5%;
+        text-align: center;
+    }
+
+    .smc-hero-content {
+        flex: 0 0 100%;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .smc-hero-actions,
+    .smc-info-card {
+        margin: 0 auto;
+    }
+
+    .smc-floating-cards {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .smc-hero-title {
+        font-size: 36px;
+    }
+
+    .smc-hero-subtitle {
+        font-size: 16px;
+    }
+}

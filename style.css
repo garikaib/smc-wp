@@ -1,0 +1,173 @@
+/*
+ Theme Name:   SMC
+ Description:  Avada Child Theme
+ Author:       Antigravity
+ Template:     Avada
+ Version:      1.0.0
+ Text Domain:  smc
+ */
+
+/* Global Typography */
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.fusion-header,
+.smc-main-nav {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Footer Styling */
+/* Footer Styling */
+.smc-footer {
+    background-color: #F0F4FF;
+    padding: 80px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #1A1A3D;
+}
+
+.smc-footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+    gap: 40px;
+}
+
+.smc-footer-brand .footer-logo img {
+    max-width: 180px;
+    margin-bottom: 25px;
+}
+
+.smc-footer-brand p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4A4A68;
+    margin-bottom: 25px;
+}
+
+.smc-social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.smc-social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #322B6B;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.smc-social-links a:hover {
+    background: #FF6D43;
+}
+
+.smc-footer-column h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #322B6B;
+    font-weight: 600;
+}
+
+.smc-footer-column .footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.smc-footer-column .footer-menu li {
+    margin-bottom: 12px;
+}
+
+.smc-footer-column .footer-menu li a {
+    text-decoration: none;
+    color: #1A1A3D;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.smc-footer-column .footer-menu li a:hover {
+    color: #FF6D43;
+}
+
+.smc-footer-offices .office-address {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.smc-footer-offices .office-address i {
+    color: #FF6D43;
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+.smc-footer-offices .office-address p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1A1A3D;
+    margin: 0;
+    font-weight: 500;
+}
+
+.smc-footer-bottom {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(50, 43, 107, 0.1);
+}
+
+.smc-footer-bottom .smc-footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4A4A68;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-bottom-links a {
+    text-decoration: none;
+    color: #4A4A68;
+    transition: color 0.3s;
+}
+
+.footer-bottom-links a:hover {
+    color: #FF6D43;
+}
+
+@media (max-width: 1024px) {
+    .smc-footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .smc-footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .smc-footer-bottom .smc-footer-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
