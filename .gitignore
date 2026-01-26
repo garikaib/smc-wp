@@ -1,1 +1,7 @@
-node_modules/\n.DS_Store\n.env
+node_modules/
+.DS_Store
+.env
+dist/
+assets/compiled/
+!assets/compiled/hero-slider.js
+!assets/compiled/hero-slider.css
