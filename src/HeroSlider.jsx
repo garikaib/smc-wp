@@ -4,26 +4,29 @@ const HeroSlider = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [exitIndex, setExitIndex] = useState(null);
 
-    const slides = [
-        {
-            id: 1,
-            text: "Drive business impact",
-            icon: "🚀",
-            image: "/wp-content/uploads/2026/01/home_slider1.webp"
-        },
-        {
-            id: 2,
-            text: "Engage top talent",
-            icon: "👥",
-            image: "/wp-content/uploads/2026/01/home_slider2.webp"
-        },
-        {
-            id: 3,
-            text: "Thrive in change",
-            icon: "📈",
-            image: "/wp-content/uploads/2026/01/home_slider3.webp"
-        }
-    ];
+    // Use dynamic data if available, otherwise fallback to static for development
+    const slides = (window.smcHeroData && window.smcHeroData.length > 0)
+        ? window.smcHeroData
+        : [
+            {
+                id: 1,
+                text: "Drive business impact",
+                icon: "🚀",
+                image: "/wp-content/uploads/2026/01/home_slider1.webp"
+            },
+            {
+                id: 2,
+                text: "Engage top talent",
+                icon: "👥",
+                image: "/wp-content/uploads/2026/01/home_slider2.webp"
+            },
+            {
+                id: 3,
+                text: "Thrive in change",
+                icon: "📈",
+                image: "/wp-content/uploads/2026/01/home_slider3.webp"
+            }
+        ];
 
     useEffect(() => {
         const interval = setInterval(() => {

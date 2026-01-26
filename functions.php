@@ -7,6 +7,9 @@
  * @package smc
  */
 
+// Include Hero Slides CPT
+require_once get_stylesheet_directory() . '/inc/hero-slides.php';
+
 function smc_enqueue_styles() {
     // Enqueue the parent theme style
     wp_enqueue_style( 'avada-parent-style', get_template_directory_uri() . '/style.css' );
@@ -20,10 +23,38 @@ function smc_enqueue_styles() {
     // Enqueue Homepage Specific Styles & Scripts
     if ( is_page_template( 'template-home.php' ) ) {
         wp_enqueue_style( 'smc-home-style', get_stylesheet_directory_uri() . '/css/home.css', array( 'smc-child-style' ), wp_get_theme()->get('Version') );
+        
         // Enqueue the built React file
         wp_enqueue_script( 'smc-hero-react', get_stylesheet_directory_uri() . '/assets/compiled/hero-slider.js', array(), wp_get_theme()->get('Version'), true );
+        
         // Enqueue the built CSS
         wp_enqueue_style( 'smc-hero-react-css', get_stylesheet_directory_uri() . '/assets/compiled/hero-slider.css', array(), wp_get_theme()->get('Version') );
+
+        // Fetch Dynamic Data for React
+        $slider_data = array();
+        $slides = new WP_Query( array(
+            'post_type'      => 'hero_slide',
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+            'post_status'    => 'publish',
+        ) );
+
+        if ( $slides->have_posts() ) {
+            while ( $slides->have_posts() ) {
+                $slides->the_post();
+                $slider_data[] = array(
+                    'id'    => get_the_ID(),
+                    'text'  => get_the_title(),
+                    'icon'  => get_post_meta( get_the_ID(), '_smc_slide_icon', true ),
+                    'image' => get_the_post_thumbnail_url( get_the_ID(), 'full' ),
+                );
+            }
+            wp_reset_postdata();
+        }
+
+        // Pass data to script
+        wp_add_inline_script( 'smc-hero-react', 'const smcHeroData = ' . json_encode( $slider_data ) . ';', 'before' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'smc_enqueue_styles' );
