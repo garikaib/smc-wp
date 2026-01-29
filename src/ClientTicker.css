@@ -1,0 +1,80 @@
+.smc-logo-ticker-section {
+    padding: 60px 0;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+}
+
+.smc-ticker-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    color: #322B6B;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.smc-logo-ticker-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Fade edges for smooth look */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.smc-logo-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+    padding: 20px 0;
+}
+
+.smc-logo-track:hover {
+    animation-play-state: paused;
+}
+
+.smc-logo-item img {
+    height: 40px;
+    /* Consitent height */
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6);
+    /* Muted initial state */
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.smc-logo-item:hover img {
+    filter: grayscale(0%) opacity(1);
+    /* Full color on hover */
+    transform: scale(1.1);
+}
+
+/* Loop Animation */
+/* We quadrupled the list, so one "set" is 1/4th of the track width */
+/* We animate from 0 to -25% to loop seamlessly */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-25%);
+        /* Assuming 4 sets of logos */
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .smc-logo-track {
+        gap: 30px;
+        animation-duration: 20s;
+    }
+
+    .smc-logo-item img {
+        height: 30px;
+    }
+}

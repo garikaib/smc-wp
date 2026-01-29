@@ -9,6 +9,8 @@
 
 // Include Hero Slides CPT
 require_once get_stylesheet_directory() . '/inc/hero-slides.php';
+// Include Client Logos CPT
+require_once get_stylesheet_directory() . '/inc/client-logos.php';
 
 function smc_enqueue_styles() {
     // Enqueue the parent theme style
@@ -20,6 +22,11 @@ function smc_enqueue_styles() {
     // Enqueue Google Fonts (Outfit and Montserrat)
     wp_enqueue_style( 'smc-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap', array(), null );
 
+    // Enqueue Page Specific Styles
+    if ( is_page_template( 'template-contact.php' ) || is_page_template( 'template-about.php' ) || is_page_template( 'template-assessment.php' ) ) {
+        wp_enqueue_style( 'smc-page-style', get_stylesheet_directory_uri() . '/css/contact.css', array( 'smc-child-style' ), wp_get_theme()->get('Version') );
+    }
+
     // Enqueue Homepage Specific Styles & Scripts
     if ( is_page_template( 'template-home.php' ) ) {
         wp_enqueue_style( 'smc-home-style', get_stylesheet_directory_uri() . '/css/home.css', array( 'smc-child-style' ), wp_get_theme()->get('Version') );
@@ -30,7 +37,7 @@ function smc_enqueue_styles() {
         // Enqueue the built CSS
         wp_enqueue_style( 'smc-hero-react-css', get_stylesheet_directory_uri() . '/assets/compiled/hero-slider.css', array(), wp_get_theme()->get('Version') );
 
-        // Fetch Dynamic Data for React
+        // Fetch Dynamic Data for React Hero Slider
         $slider_data = array();
         $slides = new WP_Query( array(
             'post_type'      => 'hero_slide',
@@ -53,8 +60,37 @@ function smc_enqueue_styles() {
             wp_reset_postdata();
         }
 
+        // Fetch Client Logos
+        $logo_data = array();
+        $logos = new WP_Query( array(
+            'post_type'      => 'client_logo',
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+            'post_status'    => 'publish',
+        ) );
+        
+        if ( $logos->have_posts() ) {
+            while ( $logos->have_posts() ) {
+                $logos->the_post();
+                $img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                if ( $img_url ) {
+                    $logo_data[] = array(
+                        'id'    => get_the_ID(),
+                        'title' => get_the_title(),
+                        'image' => $img_url,
+                    );
+                }
+            }
+            wp_reset_postdata();
+        }
+
         // Pass data to script
-        wp_add_inline_script( 'smc-hero-react', 'const smcHeroData = ' . json_encode( $slider_data ) . ';', 'before' );
+        // Pass data to script
+        $inline_script = 'window.smcHeroData = ' . json_encode( $slider_data ) . ';';
+        $inline_script .= ' window.smcClientLogos = ' . json_encode( $logo_data ) . ';';
+        
+        wp_add_inline_script( 'smc-hero-react', $inline_script, 'before' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'smc_enqueue_styles' );
@@ -62,7 +98,8 @@ add_action( 'wp_enqueue_scripts', 'smc_enqueue_styles' );
 // Add type="module" to the React script
 function smc_add_module_type( $tag, $handle, $src ) {
     if ( 'smc-hero-react' === $handle ) {
-        return '<script type="module" src="' . esc_url( $src ) . '"></script>';
+        // Use str_replace to preserve other attributes
+        return str_replace( '<script ', '<script type="module" ', $tag );
     }
     return $tag;
 }
@@ -89,7 +126,7 @@ function smc_custom_header_shortcode() {
     <div class="smc-header-container">
         <div class="smc-top-bar">
             <div class="fusion-row">
-                <span>AIMY™: the AI Coach, just got smarter. <a href="#">Learn more</a></span>
+                <span>World-Class Business Science for the African Context. <a href="<?php echo home_url('/free-assessment/'); ?>">Take the assessment</a></span>
             </div>
         </div>
         <header class="smc-main-nav">
@@ -115,7 +152,7 @@ function smc_custom_header_shortcode() {
                     <a href="<?php echo wp_login_url(); ?>" class="smc-login-link">
                         <i class="fas fa-arrow-right"></i> LOG IN
                     </a>
-                    <a href="#" class="smc-cta-btn">REQUEST A DEMO</a>
+                    <a href="#" class="smc-cta-btn">Assess Now</a>
                 </div>
         </header>
     </div>

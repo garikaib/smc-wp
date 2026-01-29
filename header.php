@@ -34,9 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Custom SMC Header Styles -->
     <style>
         :root {
-            --smc-purple: #322B6B;
-            --smc-purple-dark: #251f52;
-            --smc-orange: #FF6D43;
+            --smc-red: #A1232A;
+            --smc-teal: #0E7673;
+            --smc-gold: #D48900;
             --smc-text-dark: #1A1A3D;
             --smc-gray-light: #F4F6FC;
             --smc-font-heading: 'Outfit', sans-serif;
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
 
         .smc-top-bar {
-            background-color: #4C1D4F;
+            background-color: #A1232A; /* SMC Dark Red */
             color: #ffffff;
             text-align: center;
             padding: 8px 0;
@@ -120,14 +120,14 @@ if ( ! defined( 'ABSPATH' ) ) {
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--smc-purple);
+            background-color: var(--smc-teal);
             transition: width 0.3s ease;
         }
         .smc-nav-links ul > li:hover > a::after {
             width: 100%;
         }
         .smc-nav-links ul > li:hover > a {
-            color: var(--smc-purple);
+            color: var(--smc-teal);
         }
 
         /* Mega Menu Dropdown */
@@ -163,7 +163,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             gap: 10px;
         }
         .smc-nav-links .sub-menu li a:hover {
-            color: var(--smc-purple);
+            color: var(--smc-teal);
         }
 
         /* Right Side Actions */
@@ -183,14 +183,14 @@ if ( ! defined( 'ABSPATH' ) ) {
             transition: color 0.3s;
         }
         .smc-login-link:hover {
-            color: var(--smc-purple);
+            color: var(--smc-teal);
         }
         .smc-login-link i {
             font-size: 12px;
         }
 
         .smc-cta-btn {
-            background-color: var(--smc-orange);
+            background-color: var(--smc-red);
             color: #ffffff !important;
             padding: 12px 28px;
             border-radius: 30px;
@@ -201,15 +201,112 @@ if ( ! defined( 'ABSPATH' ) ) {
             box-shadow: 0 4px 15px rgba(255, 109, 67, 0.2);
         }
         .smc-cta-btn:hover {
-            background-color: #e6552e;
+            background-color: #8a1e24;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 109, 67, 0.3);
+            box-shadow: 0 6px 20px rgba(161, 35, 42, 0.3);
+        }
+
+        /* Mobile Menu Toggle */
+        .smc-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .smc-mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--smc-text-dark);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Mobile Menu Overlay */
+        .smc-mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #fff;
+            z-index: 2000;
+            padding: 80px 40px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .smc-mobile-menu.active {
+            right: 0;
+        }
+        .smc-mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block !important; /* Ensure it is not hidden by desktop nav rules */
+        }
+        .smc-mobile-menu ul li {
+            display: block !important;
+        }
+        .smc-mobile-menu li {
+            margin-bottom: 15px;
+        }
+        .smc-mobile-menu a {
+            text-decoration: none;
+            color: var(--smc-text-dark);
+            font-weight: 600;
+            font-size: 18px;
+            font-family: var(--smc-font-heading);
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .smc-mobile-menu ul li:last-child a {
+            border-bottom: none;
+        }
+        .smc-mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1999;
+        }
+        .smc-mobile-overlay.active {
+            display: block;
         }
 
         @media (max-width: 1024px) {
             .smc-nav-links, .smc-login-link { display: none; }
+            .smc-mobile-toggle { display: flex; }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.querySelector('.smc-mobile-toggle');
+            const menu = document.querySelector('.smc-mobile-menu');
+            const overlay = document.querySelector('.smc-mobile-overlay');
+
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    menu.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', function() {
+                    menu.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </head>
 
 <?php
@@ -230,7 +327,7 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
             <div class="smc-header-container">
                 <div class="smc-top-bar">
                     <div class="fusion-row">
-                        <span>World-Class Business Science for the African Context. <a href="#">Take the assessment</a></span>
+                        <span>World-Class Business Science for the African Context. <a href="<?php echo home_url('/free-assessment/'); ?>">Take the assessment</a></span>
                     </div>
                 </div>
                 <header class="smc-main-nav">
@@ -245,9 +342,9 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                             wp_nav_menu( array(
                                 'theme_location' => 'top_menu',
                                 'container'      => false,
-                                'menu_class'     => '',
-                                'fallback_cb'    => false,
-                                'depth'          => 2, // Ensure sub-menus are included for mega-menu
+                                'menu_class'     => 'smclinks',
+                                'fallback_cb'    => '__return_empty_string',
+                                'depth'          => 2,
                             ) );
                          ?>
                      </nav>
@@ -256,15 +353,36 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                          <a href="<?php echo wp_login_url(); ?>" class="smc-login-link">
                              <i class="fas fa-arrow-right"></i> LOG IN
                          </a>
-                         <a href="#" class="smc-cta-btn">REQUEST A DEMO</a>
+                         <a href="#" class="smc-cta-btn">Assess Now</a>
+                         <div class="smc-mobile-toggle">
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                         </div>
                      </div>
                 </header>
             </div>
+            <!-- Mobile Menu Structure -->
+            <div class="smc-mobile-overlay"></div>
+            <div class="smc-mobile-menu">
+                <nav>
+                    <?php
+                        wp_nav_menu( array(
+                            'theme_location' => 'top_menu',
+                            'container'      => false,
+                            'menu_class'     => 'smcmobile-links',
+                            'fallback_cb'    => '__return_empty_string',
+                        ) );
+                    ?>
+                </nav>
+                <div class="mobile-menu-footer" style="margin-top: auto; padding-top: 40px; border-top: 1px solid #eee;">
+                    <a href="<?php echo wp_login_url(); ?>" style="display: block; margin-bottom: 20px; font-weight: 600; color: var(--smc-text-dark); text-decoration: none;">LOG IN</a>
+                    <a href="#" class="smc-cta-btn" style="display: block; text-align: center;">Assess Now</a>
+                </div>
+            </div>
             <!-- END SMC CUSTOM HEADER -->
 
-            <!-- END SMC CUSTOM HEADER -->
-
-			<?php if ( ! is_page_template( 'template-home.php' ) ) : ?>
+			<?php if ( ! is_page_template( 'template-home.php' ) && ! is_page_template( 'template-contact.php' ) && ! is_page_template( 'template-about.php' ) && ! is_page_template( 'template-assessment.php' ) ) : ?>
                 <?php avada_current_page_title_bar( $c_page_id ); ?>
             <?php endif; ?>
 

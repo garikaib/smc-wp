@@ -1,0 +1,248 @@
+/* SMC Contact Page Styles */
+
+/* Hero Section */
+.smc-contact-hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: #fff;
+}
+
+.smc-contact-title {
+    font-size: 56px;
+    font-family: 'Outfit', sans-serif;
+    color: #A1232A; /* SMC Red */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.smc-contact-breadcrumbs {
+    color: #4A4A6A;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.smc-contact-intro {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.smc-contact-subtitle {
+    font-size: 24px;
+    color: #0E7673; /* SMC Teal */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.smc-contact-wrapper h2 {
+    font-family: 'Outfit', sans-serif;
+    color: #0E7673;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.smc-contact-desc {
+    font-size: 18px;
+    color: #4A4A68;
+    line-height: 1.6;
+    margin-bottom: 60px;
+}
+
+
+/* Info Cards */
+.smc-contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.smc-info-card {
+    padding: 40px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.smc-info-card:hover {
+    transform: translateY(-5px);
+}
+
+.smc-info-card.email-card {
+    background-color: #084846; /* Dark Teal */
+}
+
+.smc-info-card.phone-card {
+    background-color: #A1232A; /* SMC Red */
+}
+
+.smc-info-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.smc-info-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.smc-info-card-content {
+    background: #fff;
+    color: #1A1A3D;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Form Section */
+.smc-contact-form-section {
+    max-width: 800px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.smc-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.smc-form-group {
+    margin-bottom: 20px;
+}
+
+.smc-form-group.full-width {
+    grid-column: span 2;
+}
+
+.smc-form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #1A1A3D;
+    transition: border-color 0.3s;
+}
+
+.smc-form-control:focus {
+    border-color: #0E7673;
+    outline: none;
+}
+
+textarea.smc-form-control {
+    height: 150px;
+    resize: vertical;
+}
+
+.smc-submit-btn {
+    background-color: #084846;
+    color: #fff;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s;
+}
+
+.smc-submit-btn:hover {
+    background-color: #0E7673;
+}
+
+/* Waiting To Help You Bar - User Favorite */
+.smc-waiting-bar {
+    background: linear-gradient(90deg, #A1232A 0%, #0E7673 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.smc-waiting-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.smc-waiting-text {
+    text-align: left;
+}
+
+.smc-waiting-text h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.smc-waiting-text p {
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.smc-waiting-btn {
+    background: #fff;
+    color: #1A1A3D;
+    padding: 18px 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: transform 0.3s;
+}
+
+.smc-waiting-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    color: #A1232A;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .smc-contact-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .smc-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .smc-form-group.full-width {
+        grid-column: span 1;
+    }
+    
+    .smc-waiting-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .smc-waiting-text {
+        text-align: center;
+    }
+    
+    .smc-contact-title {
+        font-size: 42px;
+    }
+}

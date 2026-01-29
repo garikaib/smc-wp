@@ -18,7 +18,7 @@
 .smc-hero-slider {
     position: relative;
     min-height: 85vh;
-    background: linear-gradient(135deg, #251f52 0%, #322b6b 100%);
+    background: linear-gradient(135deg, #A1232A 0%, #0E7673 100%);
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
@@ -60,7 +60,11 @@
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 40px;
-    opacity: 0.9;
+    opacity: 1;
+    background-color: #A1232A;
+    padding: 15px 30px;
+    border-radius: 8px;
+    display: inline-block;
 }
 
 .smc-btn {
@@ -75,15 +79,15 @@
 }
 
 .smc-btn-primary {
-    background-color: #FF6D43;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(255, 109, 67, 0.3);
+    background-color: #fff;
+    color: #0E7673;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 .smc-btn-primary:hover {
-    background-color: #e6552e;
+    background-color: #f0f0f0;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 109, 67, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
 
 /* Hero Slider Interactions */
@@ -130,7 +134,7 @@
 
 .hero-text-item.active {
     background: #fff;
-    color: #322B6B;
+    color: #0E7673;
     opacity: 1;
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -162,7 +166,7 @@
 }
 
 .hero-text-item.active .icon {
-    background: #FF6D43;
+    background: #D48900;
     color: #fff;
 }
 
@@ -252,5 +256,265 @@
 
     .smc-hero-subtitle {
         font-size: 16px;
+    }
+}
+
+/* Dark Red Subtitle Section */
+.smc-subtitle-section {
+    background-color: #A1232A;
+    padding: 60px 5%;
+    text-align: center;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.smc-subtitle-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.smc-subtitle-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .smc-subtitle-text {
+        font-size: 22px;
+    }
+}
+
+/* Services & Common Structures */
+.smc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.smc-section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A1A3D;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.smc-section-title.white-text {
+    color: #fff;
+}
+
+.smc-section-desc {
+    font-size: 18px;
+    color: #4A4A6A;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.smc-services-section {
+    padding: 100px 0;
+    background-color: #F4F6FC;
+}
+
+.smc-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.smc-service-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.smc-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.smc-service-icon {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.smc-service-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A1A3D;
+    margin-bottom: 15px;
+}
+
+.smc-service-card p {
+    color: #4A4A6A;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.smc-link-btn {
+    text-decoration: none;
+    color: #A1232A;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+
+.smc-link-btn:hover {
+    color: #0E7673;
+}
+
+/* Testimonials Section */
+.smc-testimonials-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0E7673 0%, #084846 100%);
+    color: #fff;
+}
+
+.smc-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.smc-testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.testimonial-author h4 {
+    color: #fff;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.testimonial-author span {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+
+    .smc-services-grid,
+    .smc-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .smc-services-grid,
+    .smc-testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Resources Section */
+.smc-resources-section {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.smc-resources-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    background: #F4F6FC;
+    border-radius: 30px;
+    padding: 60px;
+    overflow: hidden;
+}
+
+.smc-resource-featured {
+    flex: 1;
+}
+
+.resource-tag {
+    display: inline-block;
+    background: #FF6D43;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.smc-resource-featured h3 {
+    font-size: 32px;
+    font-family: 'Inter', sans-serif;
+    color: #1A1A3D;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.smc-resource-featured p {
+    font-size: 18px;
+    color: #4A4A68;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.smc-resource-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.smc-resource-image img {
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(50, 43, 107, 0.15);
+    max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .smc-resources-content {
+        flex-direction: column;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .smc-resource-featured h3 {
+        font-size: 28px;
     }
 }
