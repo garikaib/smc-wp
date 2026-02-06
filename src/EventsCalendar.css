@@ -1,0 +1,272 @@
+/* Events Calendar Container */
+.smc-events-container {
+    font-family: 'Montserrat', sans-serif;
+    color: #4A4A68;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Header */
+.smc-events-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.smc-events-nav-btn {
+    background: none;
+    border: 1px solid #E0E0E0;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #1A1A3D;
+    transition: all 0.2s;
+}
+
+.smc-events-nav-btn:hover {
+    background: #F8F9FF;
+    border-color: #A1232A;
+    color: #A1232A;
+}
+
+.smc-events-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1A1A3D;
+    margin: 0;
+}
+
+.smc-view-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.smc-view-btn {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #4A4A68;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.smc-view-btn.active {
+    background: #0E7673;
+    color: #fff;
+}
+
+/* Month Grid */
+.smc-events-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.smc-grid-header {
+    text-align: center;
+    font-weight: 700;
+    color: #0E7673;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.smc-grid-cell {
+    min-height: 120px;
+    border: 1px solid #f0f0f0;
+    padding: 8px;
+    border-radius: 4px;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.smc-grid-cell:hover {
+    background: #FAFBFF;
+}
+
+.smc-grid-cell.outside-month {
+    background: #fcfcfc;
+    opacity: 0.5;
+}
+
+.smc-grid-date {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A3D;
+    margin-bottom: 5px;
+}
+
+.smc-grid-cell.today .smc-grid-date {
+    color: #A1232A;
+    font-weight: 800;
+}
+
+.smc-event-marker {
+    display: block;
+    background: #E8F5F5;
+    color: #0E7673;
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 3px solid #0E7673;
+    transition: all 0.2s;
+}
+
+.smc-event-marker:hover {
+    background: #0E7673;
+    color: #fff;
+}
+
+/* List View */
+.smc-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.smc-event-card {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s;
+}
+
+.smc-event-card:hover {
+    transform: translateY(-3px);
+}
+
+.smc-event-date-box {
+    background: #F8F9FF;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    text-align: center;
+    border-right: 1px solid #eee;
+}
+
+.smc-date-month {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #A1232A;
+    font-size: 14px;
+}
+
+.smc-date-day {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1A1A3D;
+    line-height: 1;
+    margin: 5px 0;
+}
+
+.smc-event-details {
+    padding: 25px;
+    flex: 1;
+}
+
+.smc-event-time-loc {
+    font-size: 13px;
+    color: #8A8A9D;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.smc-event-title-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A3D;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+}
+
+.smc-event-title-link:hover {
+    color: #0E7673;
+}
+
+.smc-event-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.smc-event-cta {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #0E7673;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.smc-event-cta:hover {
+    background: #A1232A;
+}
+
+@media (max-width: 768px) {
+    .smc-event-card {
+        flex-direction: column;
+    }
+
+    .smc-event-date-box {
+        flex-direction: row;
+        gap: 10px;
+        min-height: auto;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .smc-date-day {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .smc-events-grid {
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    .smc-grid-cell {
+        min-height: 80px;
+    }
+
+    .smc-event-marker {
+        font-size: 9px;
+        padding: 2px 4px;
+    }
+}

@@ -21,7 +21,7 @@ $is_builder = ( function_exists( 'fusion_is_preview_frame' ) && fusion_is_previe
                     <!-- Column 1: Brand & Social -->
                     <div class="smc-footer-column smc-footer-brand">
                         <div class="footer-logo">
-                            <img src="https://smc-wp.ddev.site/wp-content/uploads/2026/01/smc_logo_cropped-1.png" alt="SMC Logo">
+                            <img src="<?php echo home_url('/wp-content/uploads/2026/01/smc_logo_cropped-1.png'); ?>" alt="SMC Logo">
                         </div>
                         <p>World-Class Business Science for the African Context. We empower leaders with data-driven insights and scalable business models.</p>
                         <div class="smc-social-links">

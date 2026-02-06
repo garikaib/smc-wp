@@ -3,43 +3,45 @@
     width: 100%;
     margin: 0 auto;
     position: relative;
-    /* Ensure z-index interaction with hero title if necessary */
 }
 
-/* Background Orb Animation */
+/* Background Orb Animation - Enhanced for Premium Feel */
 .smc-orb-container {
     position: absolute;
     top: 50%;
-    right: 10%;
-    width: 500px;
-    height: 500px;
+    right: 5%;
+    width: 600px;
+    height: 600px;
     transform: translate(0, -50%);
     z-index: 1;
     pointer-events: none;
+    filter: blur(40px);
 }
 
 .smc-orb {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255, 109, 67, 0.4) 0%, rgba(255, 109, 67, 0) 70%);
+    background: radial-gradient(circle, rgba(14, 118, 115, 0.25) 0%, rgba(14, 118, 115, 0) 70%);
     border-radius: 50%;
-    animation: pulse 4s ease-in-out infinite;
-    opacity: 0.6;
+    animation: flowPulse 8s ease-in-out infinite;
+    opacity: 0.5;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
+@keyframes flowPulse {
 
-    50% {
-        transform: scale(1.05);
-        opacity: 0.7;
-    }
-
+    0%,
     100% {
-        transform: scale(0.95);
+        transform: scale(0.9) translate(0, 0);
+        opacity: 0.4;
+    }
+
+    33% {
+        transform: scale(1.1) translate(20px, -20px);
+        opacity: 0.6;
+    }
+
+    66% {
+        transform: scale(1.05) translate(-10px, 15px);
         opacity: 0.5;
     }
 }
@@ -48,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 600px;
+    height: 650px;
     position: relative;
     width: 100%;
     max-width: 1400px;
@@ -57,79 +59,133 @@
 
 /* Text Column */
 .smc-text-column {
-    flex: 0 0 45%;
+    flex: 0 0 40%;
     position: relative;
     z-index: 20;
-    /* Ensure text sits above orb but manages overlap with image */
-    margin-right: -80px;
-    /* More overlap for integrated feel */
+    margin-right: -100px;
     display: flex;
-    justify-content: center;
-    padding-left: 0;
+    justify-content: flex-start;
 }
 
 .smc-text-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 25px;
     align-items: flex-start;
-    /* Align to start for cleaner look */
+    position: relative;
+    padding: 60px 0;
+    /* Space for fading masks */
+}
+
+/* The Belt Track - Vertical line connecting icons */
+.smc-text-list::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    /* Align with center of 52px icons + padding */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.1) 80%,
+            rgba(255, 255, 255, 0) 100%);
+    z-index: 0;
+}
+
+/* Fading Masks for "Infinite Belt" feel */
+.smc-text-column::before,
+.smc-text-column::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 30;
+    pointer-events: none;
+}
+
+.smc-text-column::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--smc-bg-body) 0%, rgba(0, 0, 0, 0) 100%);
+    display: none;
+    /* Only show if we have many items or scrolling */
+}
+
+.smc-text-column::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--smc-bg-body) 0%, rgba(0, 0, 0, 0) 100%);
+    display: none;
 }
 
 .smc-text-item {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 12px 24px 12px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 28px 14px 14px;
     border-radius: 100px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
     width: auto;
-    min-width: 280px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    opacity: 0.5;
-    transform: translateX(0);
+    min-width: 320px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.4;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    /* For progress bar */
 }
 
 .smc-text-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 0.7;
+    transform: translateX(10px);
 }
 
 .smc-text-item.active {
-    background: rgba(255, 255, 255, 0.15);
-    /* More subtle glass background */
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
-    /* Keep text white for premium dark theme feel */
     opacity: 1;
-    transform: translateX(30px) scale(1.02);
-    /* More movement */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(35px) scale(1.08);
+    /* Sophisticated shift */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.25);
     z-index: 25;
 }
 
-/* Progress Bar Background */
-.smc-text-item.active::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
-    background: rgba(255, 255, 255, 0.1);
-    /* Subtle fill */
-    z-index: -1;
-    animation: progressFill 5s linear forwards;
+/* Rhythmic Pulse for Active Item */
+@keyframes rhythmPulse {
+
+    0%,
+    100% {
+        transform: translateX(35px) scale(1.08);
+    }
+
+    50% {
+        transform: translateX(40px) scale(1.1);
+    }
 }
 
-@keyframes progressFill {
+.smc-text-item.active {
+    animation: rhythmPulse 4s ease-in-out infinite;
+}
+
+/* Progress Fill Animation */
+.smc-text-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--smc-teal);
+    animation: barFill 5s linear forwards;
+    box-shadow: 0 0 10px var(--smc-teal);
+}
+
+@keyframes barFill {
     from {
         width: 0%;
     }
@@ -139,52 +195,60 @@
     }
 }
 
-/* Text Icon */
+/* Text Icon Container */
 .smc-text-icon {
-    font-size: 18px;
-    width: 44px;
-    height: 44px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .smc-text-item.active .smc-text-icon {
-    background: linear-gradient(135deg, #FF6D43, #FF8E62);
-    /* Gradient Brand */
+    background: var(--smc-teal);
     color: #fff;
-    box-shadow: 0 0 20px rgba(255, 109, 67, 0.5);
-    border-color: transparent;
-    animation: iconPulse 2s infinite ease-in-out;
+    box-shadow: 0 0 30px rgba(14, 118, 115, 0.6), 0 0 60px rgba(14, 118, 115, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: rotate(15deg);
+    z-index: 2;
 }
 
-@keyframes iconPulse {
-    0% {
-        box-shadow: 0 0 15px rgba(255, 109, 67, 0.4);
-        transform: scale(1);
-    }
+/* Icon Glow Ring */
+.smc-text-item.active .smc-text-icon::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid var(--smc-teal);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringExpand 2s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
 
-    50% {
-        box-shadow: 0 0 25px rgba(255, 109, 67, 0.7);
-        transform: scale(1.05);
+@keyframes ringExpand {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
     }
 
     100% {
-        box-shadow: 0 0 15px rgba(255, 109, 67, 0.4);
-        transform: scale(1);
+        transform: scale(1.4);
+        opacity: 0;
     }
 }
 
 .smc-text-label {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: 0.5px;
+    font-family: var(--smc-font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.2px;
 }
 
 /* Image Column */
@@ -196,41 +260,50 @@
     align-items: flex-end;
     justify-content: flex-end;
     z-index: 10;
+    min-width: 500px;
 }
 
 .smc-image-item {
     position: absolute;
     bottom: 0;
     right: 0;
-    /* Adjust positioning to be closer to center if needed via right % */
-    width: auto;
-    max-height: 680px;
-    /* Taller image presence */
-    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    height: 100%;
+    max-height: 720px;
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
-    transform: translateY(60px) scale(0.98);
+    transform: translateX(100px) scale(1.05);
     pointer-events: none;
-    z-index: 10;
+    z-index: 5;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .smc-image-item img {
-    max-height: 100%;
+    height: auto;
     width: auto;
+    max-width: 100%;
+    max-height: 110%;
+    /* Allow slight bleed */
+    object-fit: contain;
+    filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.4));
+    margin-bottom: -40px;
     display: block;
-    filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.4));
 }
 
-/* Active Image: Slide Up In + Scale */
+/* Active Image: Slide In + Scale Down to 1 */
 .smc-image-item.active {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scale(1);
+    z-index: 10;
 }
 
-/* Exit: Slide Right */
+/* Exit: Gentle Fade + Slide Left */
 .smc-image-item.exit {
-    transform: translateX(80px);
+    transform: translateX(-60px) scale(0.95);
     opacity: 0;
-    transition: all 0.6s ease-in;
+    transition: all 0.8s ease-in;
 }
 
 /* Responsive */
@@ -239,39 +312,36 @@
         flex-direction: column-reverse;
         justify-content: flex-end;
         height: auto;
-        padding-top: 40px;
+        padding-top: 60px;
+        text-align: center;
     }
 
     .smc-text-column {
+        flex: 1;
         margin-right: 0;
-        margin-bottom: 40px;
-        z-index: 30;
+        margin-top: -100px;
+        justify-content: center;
+    }
+
+    .smc-text-list {
+        align-items: center;
+    }
+
+    .smc-text-item.active {
+        transform: scale(1.05) translateY(-10px);
     }
 
     .smc-image-column {
+        height: 450px;
         width: 100%;
-        height: 400px;
-        position: relative;
         justify-content: center;
     }
 
     .smc-image-item {
-        right: 50%;
-        transform: translateX(50%) translateY(40px);
-        max-height: 400px;
+        justify-content: center;
     }
 
-    .smc-image-item.active {
-        transform: translateX(50%) translateY(0);
-    }
-
-    .smc-image-item.exit {
-        transform: translateX(calc(50% + 80px));
-    }
-
-    .smc-orb-container {
-        right: 50%;
-        transform: translate(50%, -50%);
-        top: 40%;
+    .smc-image-item img {
+        margin-bottom: 0;
     }
 }

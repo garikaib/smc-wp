@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { Rocket, Users, TrendingUp, ArrowRight } from 'lucide-react';
 
 const HeroSlider = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [exitIndex, setExitIndex] = useState(null);
 
     // Use dynamic data if available, otherwise fallback to static for development
-    const slides = (window.smcHeroData && window.smcHeroData.length > 0)
-        ? window.smcHeroData
-        : [
-            {
-                id: 1,
-                text: "Drive business impact",
-                icon: "🚀",
-                image: "/wp-content/uploads/2026/01/home_slider1.webp"
-            },
-            {
-                id: 2,
-                text: "Engage top talent",
-                icon: "👥",
-                image: "/wp-content/uploads/2026/01/home_slider2.webp"
-            },
-            {
-                id: 3,
-                text: "Thrive in change",
-                icon: "📈",
-                image: "/wp-content/uploads/2026/01/home_slider3.webp"
-            }
-        ];
+    // Update: Now using Lucide Icon components instead of raw emojis
+    const slides = [
+        {
+            id: 1,
+            text: "Drive Business Impact",
+            icon: <Rocket size={20} />,
+            image: "/wp-content/uploads/2026/01/home_slider1.webp"
+        },
+        {
+            id: 2,
+            text: "Engage Top Talent",
+            icon: <Users size={20} />,
+            image: "/wp-content/uploads/2026/01/home_slider2.webp"
+        },
+        {
+            id: 3,
+            text: "Thrive in Change",
+            icon: <TrendingUp size={20} />,
+            image: "/wp-content/uploads/2026/01/home_slider3.webp"
+        }
+    ];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -56,8 +56,10 @@ const HeroSlider = () => {
                                 key={slide.id}
                                 className={`smc-text-item ${index === activeIndex ? 'active' : ''}`}
                                 onClick={() => {
-                                    setExitIndex(activeIndex);
-                                    setActiveIndex(index);
+                                    if (index !== activeIndex) {
+                                        setExitIndex(activeIndex);
+                                        setActiveIndex(index);
+                                    }
                                 }}
                             >
                                 <span className="smc-text-icon">{slide.icon}</span>

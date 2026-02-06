@@ -1,0 +1,113 @@
+.smc-profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.smc-spa-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.smc-spa-tab {
+    background: none;
+    border: none;
+    color: var(--smc-text-main);
+    padding: 10px 25px;
+    font-family: var(--smc-font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.smc-spa-tab.active {
+    opacity: 1;
+    color: var(--smc-teal);
+}
+
+.smc-spa-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--smc-teal);
+}
+
+.smc-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.smc-spa-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+    color: var(--smc-teal);
+    gap: 20px;
+}
+
+.smc-spa-loading p {
+    font-family: var(--smc-font-heading);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.smc-profile-header {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .smc-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .smc-spa-tab {
+        padding: 10px 15px;
+        font-size: 11px;
+    }
+}
+
+.smc-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    font-weight: 700;
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.smc-message.success {
+    background: rgba(14, 118, 115, 0.1);
+    color: var(--smc-teal);
+    border: 1px solid rgba(14, 118, 115, 0.2);
+}
+
+.smc-message.error {
+    background: rgba(161, 35, 42, 0.1);
+    color: var(--smc-red);
+    border: 1px solid rgba(161, 35, 42, 0.2);
+}

@@ -24,3 +24,26 @@ if (tickerRoot) {
         </React.StrictMode>
     );
 }
+
+// Mount Events Calendar
+import EventsCalendar from './EventsCalendar.jsx';
+const eventsRoot = document.getElementById('smc-events-root');
+if (eventsRoot) {
+    const root = ReactDOM.createRoot(eventsRoot);
+    root.render(
+        <React.StrictMode>
+            <EventsCalendar />
+        </React.StrictMode>
+    );
+}
+// Mount User Profile SPA
+import UserProfile from './UserProfile.jsx';
+import './UserProfile.css';
+const profileRoot = document.getElementById('smc-profile-spa-root');
+if (profileRoot) {
+    ReactDOM.createRoot(profileRoot).render(
+        <React.StrictMode>
+            <UserProfile />
+        </React.StrictMode>
+    );
+}

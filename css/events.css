@@ -1,0 +1,93 @@
+/* SMC Events Calendar Custom Styles */
+
+/* Ensure Fonts Match Theme */
+.tribe-events .tribe-events-header__text-description,
+.tribe-events .tribe-events-calendar-list__event-title,
+.tribe-events .tribe-events-calendar-month__day-cell--selected,
+.tribe-events h2,
+.tribe-events h3,
+.tribe-common h1,
+.tribe-common h2,
+.tribe-common h3,
+.tribe-common h4,
+.tribe-common h5,
+.tribe-common h6 {
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--smc-text-main);
+}
+
+.tribe-events,
+.tribe-events p,
+.tribe-events-calendar-list__event-description,
+.tribe-common-b2,
+.tribe-common-b3 {
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--smc-text-muted);
+}
+
+/* Accent Colors */
+/* Links */
+.tribe-events a,
+.tribe-events-calendar-list__event-title-link,
+.tribe-events-calendar-month__day-cell--selected .tribe-events-calendar-month__day-date-link {
+    color: #0E7673;
+    /* Teal */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.tribe-events a:hover,
+.tribe-events-calendar-list__event-title-link:hover {
+    color: #A1232A;
+    /* Red */
+}
+
+/* Buttons */
+.tribe-events .tribe-events-c-cta__button,
+.tribe-events .tribe-common-c-btn,
+.tribe-events-c-subscribe-dropdown__button {
+    background-color: #A1232A !important;
+    /* Red */
+    border-radius: 4px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #fff !important;
+    border: none;
+}
+
+.tribe-events .tribe-events-c-cta__button:hover,
+.tribe-events .tribe-common-c-btn:hover,
+.tribe-events-c-subscribe-dropdown__button:hover {
+    background-color: #0E7673 !important;
+    /* Teal */
+}
+
+/* Calendar Month View Headers */
+.tribe-events .tribe-events-calendar-month__header-column-title {
+    font-family: 'Outfit', sans-serif;
+    color: #1A1A3D;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Event Date Tag */
+.tribe-events-calendar-list__event-date-tag-datetime {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+}
+
+/* Search Bar Styling */
+.tribe-events-c-search__input {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Tooltip/Popup styling */
+.tribe-events-calendar-month__calendar-event-tooltip-title {
+    font-family: 'Outfit', sans-serif;
+    color: #1A1A3D;
+}
+
+.tribe-events-calendar-month__calendar-event-tooltip-datetime {
+    color: #0E7673;
+}

@@ -13,6 +13,8 @@
   "type": "commonjs",
   "dependencies": {
     "@vitejs/plugin-react": "^5.1.2",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "vite": "^7.3.1"

@@ -4,19 +4,21 @@
 .smc-contact-hero {
     text-align: center;
     padding: 80px 20px 60px;
-    background: #fff;
+    background: var(--smc-bg-body);
+    transition: background-color 0.3s ease;
 }
 
 .smc-contact-title {
     font-size: 56px;
     font-family: 'Outfit', sans-serif;
-    color: #A1232A; /* SMC Red */
+    color: #A1232A;
+    /* SMC Red */
     font-weight: 700;
     margin-bottom: 20px;
 }
 
 .smc-contact-breadcrumbs {
-    color: #4A4A6A;
+    color: var(--smc-text-muted);
     font-size: 14px;
     margin-bottom: 40px;
 }
@@ -28,7 +30,8 @@
 
 .smc-contact-subtitle {
     font-size: 24px;
-    color: #0E7673; /* SMC Teal */
+    color: #0E7673;
+    /* SMC Teal */
     font-weight: 600;
     margin-bottom: 10px;
 }
@@ -42,7 +45,7 @@
 
 .smc-contact-desc {
     font-size: 18px;
-    color: #4A4A68;
+    color: var(--smc-text-muted);
     line-height: 1.6;
     margin-bottom: 60px;
 }
@@ -71,11 +74,13 @@
 }
 
 .smc-info-card.email-card {
-    background-color: #084846; /* Dark Teal */
+    background-color: #084846;
+    /* Dark Teal */
 }
 
 .smc-info-card.phone-card {
-    background-color: #A1232A; /* SMC Red */
+    background-color: #A1232A;
+    /* SMC Red */
 }
 
 .smc-info-card h3 {
@@ -94,8 +99,8 @@
 }
 
 .smc-info-card-content {
-    background: #fff;
-    color: #1A1A3D;
+    background: var(--smc-bg-surface);
+    color: var(--smc-text-main);
     padding: 15px 20px;
     border-radius: 6px;
     font-weight: 600;
@@ -105,7 +110,7 @@
 
 /* Form Section */
 .smc-contact-form-section {
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto 100px;
     padding: 0 20px;
     text-align: center;
@@ -127,26 +132,7 @@
     grid-column: span 2;
 }
 
-.smc-form-control {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    color: #1A1A3D;
-    transition: border-color 0.3s;
-}
-
-.smc-form-control:focus {
-    border-color: #0E7673;
-    outline: none;
-}
-
-textarea.smc-form-control {
-    height: 150px;
-    resize: vertical;
-}
+/* System-wide form styles applied via style.css */
 
 .smc-submit-btn {
     background-color: #084846;
@@ -214,7 +200,7 @@ textarea.smc-form-control {
 
 .smc-waiting-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     color: #A1232A;
 }
 
@@ -223,25 +209,25 @@ textarea.smc-form-control {
     .smc-contact-cards {
         grid-template-columns: 1fr;
     }
-    
+
     .smc-form-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .smc-form-group.full-width {
         grid-column: span 1;
     }
-    
+
     .smc-waiting-content {
         flex-direction: column;
         text-align: center;
         gap: 30px;
     }
-    
+
     .smc-waiting-text {
         text-align: center;
     }
-    
+
     .smc-contact-title {
         font-size: 42px;
     }

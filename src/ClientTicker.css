@@ -1,16 +1,18 @@
 .smc-logo-ticker-section {
     padding: 60px 0;
     overflow: hidden;
-    background: #fff;
+    background: var(--smc-bg-surface);
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .smc-ticker-headline {
     font-family: 'Outfit', sans-serif;
     font-size: 20px;
-    color: #322B6B;
+    color: var(--smc-text-main);
     margin-bottom: 40px;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .smc-logo-ticker-container {
