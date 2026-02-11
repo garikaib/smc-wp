@@ -119,7 +119,11 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
             <div class="smc-header-container">
                 <div class="smc-top-bar">
                     <div class="fusion-row">
-                        <span>World-Class Business Science for the African Context. <a href="<?php echo home_url('/free-assessment/'); ?>">Take the assessment</a></span>
+                        <?php if ( is_user_logged_in() ) : $current_user = wp_get_current_user(); ?>
+                            <span>Welcome back, <strong><?php echo esc_html( $current_user->display_name ); ?></strong>. <a href="<?php echo home_url('/my-account/'); ?>">View Your Business Health Record &rarr;</a></span>
+                        <?php else : ?>
+                            <span>World-Class Business Science for the African Context. <a href="<?php echo home_url('/free-assessment/'); ?>">Get Your Free Business Score &rarr;</a></span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <header class="smc-main-nav">
@@ -149,6 +153,16 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                          <?php if ( is_user_logged_in() ) : 
                              $current_user = wp_get_current_user();
                          ?>
+                             <a href="<?php echo home_url('/learning/'); ?>" class="smc-learning-link" title="My Learning">
+                                 <i data-lucide="book-open"></i>
+                             </a>
+                             
+                             <?php if ( current_user_can( 'manage_options' ) ) : ?>
+                                 <a href="<?php echo home_url('/instructor/'); ?>" class="smc-instructor-link" title="Instructor Hub">
+                                     <i data-lucide="layout-dashboard"></i>
+                                 </a>
+                             <?php endif; ?>
+
                              <a href="<?php echo home_url('/my-account/'); ?>" class="smc-login-link logged-in">
                                  <i data-lucide="user"></i> <?php echo esc_html( $current_user->display_name ); ?>
                              </a>
@@ -186,7 +200,11 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                                     <span class="user-name"><?php echo esc_html( $current_user->display_name ); ?></span>
                                 </div>
                             </div>
-                            <a href="<?php echo home_url('/my-account/'); ?>" class="profile-link-btn">My Dashboard <i data-lucide="arrow-right"></i></a>
+                            <a href="<?php echo home_url('/learning/'); ?>" class="profile-link-btn">My Learning <i data-lucide="book-open"></i></a>
+                            <?php if ( current_user_can( 'manage_options' ) ) : ?>
+                                <a href="<?php echo home_url('/instructor/'); ?>" class="profile-link-btn">Instructor Hub <i data-lucide="layout-dashboard"></i></a>
+                            <?php endif; ?>
+                            <a href="<?php echo home_url('/my-account/'); ?>" class="profile-link-btn">Account Settings <i data-lucide="user"></i></a>
                         <?php else : ?>
                             <div class="profile-info logged-out">
                                 <span class="welcome-text">Welcome to SMC</span>

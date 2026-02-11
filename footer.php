@@ -81,6 +81,12 @@ $is_builder = ( function_exists( 'fusion_is_preview_frame' ) && fusion_is_previe
                             'fallback_cb'    => false,
                         ) );
                         ?>
+                        <ul class="footer-menu smc-extra-footer-links">
+                            <li><a href="<?php echo home_url('/learning/'); ?>"><?php _e( 'My Learning Dashboard', 'smc' ); ?></a></li>
+                            <?php if ( current_user_can( 'manage_options' ) ) : ?>
+                                <li><a href="<?php echo home_url('/instructor/'); ?>"><?php _e( 'Instructor Hub', 'smc' ); ?></a></li>
+                            <?php endif; ?>
+                        </ul>
                     </div>
 
                     <!-- Column 5: Offices -->

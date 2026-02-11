@@ -530,6 +530,36 @@ body,
     font-size: 16px;
 }
 
+.smc-learning-link,
+.smc-instructor-link {
+    color: var(--smc-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.smc-learning-link:hover,
+.smc-instructor-link:hover {
+    color: var(--smc-teal);
+    transform: translateY(-2px);
+}
+
+.smc-learning-link svg,
+.smc-instructor-link svg {
+    width: 22px;
+    height: 22px;
+}
+
+.smc-extra-footer-links {
+    margin-top: 20px;
+}
+
+.smc-extra-footer-links li a {
+    color: var(--smc-teal) !important;
+    font-weight: 700 !important;
+}
+
 .smc-cta-btn {
     background-color: var(--smc-red);
     color: #ffffff !important;
