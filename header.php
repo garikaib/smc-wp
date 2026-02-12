@@ -30,75 +30,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	echo apply_filters( 'avada_space_head', Avada()->settings->get( 'space_head' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 	?>
     
-    <!-- Custom SMC Header Styles -->
-    <!-- Custom SMC Header Styles -->
-    <!-- Custom SMC Header Styles -->
-    <!-- Styles moved to style.css -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.querySelector('.smc-mobile-toggle');
-            const menu = document.querySelector('.smc-mobile-menu');
-            const overlay = document.querySelector('.smc-mobile-overlay');
-            const closeBtn = document.querySelector('.smc-mobile-close');
-
-            function openMenu() {
-                menu.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                
-                // Staggered Animation for Links
-                const links = document.querySelectorAll('.smcmobile-links > li');
-                links.forEach((link, index) => {
-                    link.style.animationDelay = `${index * 0.05}s`;
-                    link.classList.add('slide-in');
-                });
-            }
-
-            function closeMenu() {
-                menu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                const links = document.querySelectorAll('.smcmobile-links > li');
-                links.forEach(link => {
-                    link.classList.remove('slide-in');
-                    link.style.animationDelay = '0s';
-                });
-            }
-
-            if (toggle) toggle.addEventListener('click', openMenu);
-            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-            if (overlay) overlay.addEventListener('click', closeMenu);
-
-            // Inject Lucide Icons based on text
-            const menuItems = document.querySelectorAll('.smcmobile-links li a');
-            menuItems.forEach(item => {
-                const text = item.textContent.trim().toLowerCase();
-                let iconName = 'chevron-right'; // Default
-
-                if (text.includes('home')) iconName = 'house';
-                else if (text.includes('about')) iconName = 'info';
-                else if (text.includes('contact')) iconName = 'mail';
-                else if (text.includes('assess')) iconName = 'clipboard-list';
-                else if (text.includes('article') || text.includes('blog')) iconName = 'book-open';
-                else if (text.includes('service')) iconName = 'briefcase';
-
-                // Create Icon Element if not exists
-                if (!item.querySelector('.nav-icon')) {
-                    const icon = document.createElement('i');
-                    icon.setAttribute('data-lucide', iconName);
-                    icon.classList.add('nav-icon');
-                    item.prepend(icon);
-                }
-            });
-
-            // Re-render icons if Lucide is loaded
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        });
-    </script>
 </head>
 
 <?php
@@ -120,16 +51,16 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                 <div class="smc-top-bar">
                     <div class="fusion-row">
                         <?php if ( is_user_logged_in() ) : $current_user = wp_get_current_user(); ?>
-                            <span>Welcome back, <strong><?php echo esc_html( $current_user->display_name ); ?></strong>. <a href="<?php echo home_url('/my-account/'); ?>">View Your Business Health Record &rarr;</a></span>
+                            <span>Welcome back, <strong><?php echo esc_html( $current_user->display_name ); ?></strong>. <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>">View Your Business Health Record &rarr;</a></span>
                         <?php else : ?>
-                            <span>World-Class Business Science for the African Context. <a href="<?php echo home_url('/free-assessment/'); ?>">Get Your Free Business Score &rarr;</a></span>
+                            <span>World-Class Business Science for the African Context. <a href="<?php echo esc_url( home_url( '/free-assessment/' ) ); ?>">Get Your Free Business Score &rarr;</a></span>
                         <?php endif; ?>
                     </div>
                 </div>
                 <header class="smc-main-nav">
                      <div class="smc-logo-container">
-                         <a href="<?php echo home_url(); ?>">
-                             <img src="<?php echo home_url('/wp-content/uploads/2026/01/smc_logo_cropped-1.png'); ?>" alt="SMC Logo">
+                         <a href="<?php echo esc_url( home_url() ); ?>">
+                             <img src="<?php echo esc_url( home_url( '/wp-content/uploads/2026/01/smc_logo_cropped-1.png' ) ); ?>" alt="SMC Logo">
                          </a>
                      </div>
                      
@@ -146,47 +77,47 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                      </nav>
 
                      <div class="smc-actions">
-                         <a href="<?php echo home_url('/shop/'); ?>" class="smc-shop-link">
+                         <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="smc-shop-link">
                              <i data-lucide="shopping-bag"></i> <span><?php echo __( 'Shop', 'smc' ); ?></span>
                          </a>
 
                          <?php if ( is_user_logged_in() ) : 
                              $current_user = wp_get_current_user();
                          ?>
-                             <a href="<?php echo home_url('/learning/'); ?>" class="smc-learning-link" title="My Learning">
+                             <a href="<?php echo esc_url( home_url( '/learning/' ) ); ?>" class="smc-learning-link" title="My Learning">
                                  <i data-lucide="book-open"></i>
                              </a>
                              
                              <?php if ( current_user_can( 'manage_options' ) ) : ?>
-                                 <a href="<?php echo home_url('/instructor/'); ?>" class="smc-instructor-link" title="Instructor Hub">
+                                 <a href="<?php echo esc_url( home_url( '/instructor/' ) ); ?>" class="smc-instructor-link" title="Instructor Hub">
                                      <i data-lucide="layout-dashboard"></i>
                                  </a>
                              <?php endif; ?>
 
-                             <a href="<?php echo home_url('/my-account/'); ?>" class="smc-login-link logged-in">
+                             <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="smc-login-link logged-in">
                                  <i data-lucide="user"></i> <?php echo esc_html( $current_user->display_name ); ?>
                              </a>
                          <?php else : ?>
-                             <a href="<?php echo home_url('/my-account/'); ?>" class="smc-login-link">
+                             <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="smc-login-link">
                                  <i class="fas fa-arrow-right"></i> LOG IN
                              </a>
                          <?php endif; ?>
-                         <div class="smc-mobile-toggle">
+                         <button type="button" class="smc-mobile-toggle" aria-controls="smc-mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Open menu', 'smc' ); ?>">
                              <span></span>
                              <span></span>
                              <span></span>
-                         </div>
+                         </button>
                      </div>
                 </header>
             </div>
             <!-- Mobile Menu Structure -->
-            <div class="smc-mobile-overlay"></div>
-            <div class="smc-mobile-menu">
+            <button type="button" class="smc-mobile-overlay" aria-label="<?php esc_attr_e( 'Close menu', 'smc' ); ?>"></button>
+            <aside id="smc-mobile-menu" class="smc-mobile-menu" aria-hidden="true">
                 <div class="smc-mobile-header">
                     <div class="smc-mobile-actions">
-                        <div class="smc-mobile-close">
+                        <button type="button" class="smc-mobile-close" aria-label="<?php esc_attr_e( 'Close menu', 'smc' ); ?>">
                             <i data-lucide="x"></i>
-                        </div>
+                        </button>
                     </div>
                     <!-- Profile Section at Top -->
                     <div class="mobile-profile-card">
@@ -200,25 +131,39 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                                     <span class="user-name"><?php echo esc_html( $current_user->display_name ); ?></span>
                                 </div>
                             </div>
-                            <a href="<?php echo home_url('/learning/'); ?>" class="profile-link-btn">My Learning <i data-lucide="book-open"></i></a>
+                            <a href="<?php echo esc_url( home_url( '/learning/' ) ); ?>" class="profile-link-btn">My Learning <i data-lucide="book-open"></i></a>
                             <?php if ( current_user_can( 'manage_options' ) ) : ?>
-                                <a href="<?php echo home_url('/instructor/'); ?>" class="profile-link-btn">Instructor Hub <i data-lucide="layout-dashboard"></i></a>
+                                <a href="<?php echo esc_url( home_url( '/instructor/' ) ); ?>" class="profile-link-btn">Instructor Hub <i data-lucide="layout-dashboard"></i></a>
                             <?php endif; ?>
-                            <a href="<?php echo home_url('/my-account/'); ?>" class="profile-link-btn">Account Settings <i data-lucide="user"></i></a>
+                            <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="profile-link-btn">Account Settings <i data-lucide="user"></i></a>
                         <?php else : ?>
                             <div class="profile-info logged-out">
                                 <span class="welcome-text">Welcome to SMC</span>
                                 <span class="user-name">Guest</span>
                             </div>
                             <div class="auth-buttons">
-                                <a href="<?php echo home_url('/my-account/'); ?>" class="btn-login">Sign In</a>
-                                <a href="<?php echo home_url('/my-account/'); ?>" class="btn-register">Register</a>
+                                <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="btn-login">Sign In</a>
+                                <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="btn-register">Register</a>
                             </div>
                         <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="smc-mobile-scroll">
+                    <form role="search" method="get" class="smc-mobile-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <label class="screen-reader-text" for="smc-mobile-search-input"><?php esc_html_e( 'Search the site', 'smc' ); ?></label>
+                        <input id="smc-mobile-search-input" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Search resources, tools, and articles', 'smc' ); ?>" />
+                        <button type="submit" aria-label="<?php esc_attr_e( 'Submit search', 'smc' ); ?>">
+                            <i data-lucide="search"></i>
+                        </button>
+                    </form>
+
+                    <div class="smc-mobile-quick-tools">
+                        <a href="<?php echo esc_url( home_url( '/free-assessment/' ) ); ?>" class="smc-mobile-tool-link"><i data-lucide="clipboard-check"></i><span>Free Assessment</span></a>
+                        <a href="<?php echo esc_url( home_url( '/articles/' ) ); ?>" class="smc-mobile-tool-link"><i data-lucide="newspaper"></i><span>Articles</span></a>
+                        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="smc-mobile-tool-link"><i data-lucide="message-circle"></i><span>Contact</span></a>
+                    </div>
+
                     <nav class="mobile-nav-container">
                         <span class="nav-label">MENU</span>
                         <?php
@@ -227,14 +172,24 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                                 'container'      => false,
                                 'menu_class'     => 'smcmobile-links',
                                 'fallback_cb'    => '__return_empty_string',
+                                'depth'          => 2,
                             ) );
                         ?>
                     </nav>
+
+                    <div class="smc-mobile-recent" hidden>
+                        <span class="nav-label">RECENTLY VISITED</span>
+                        <ul class="smc-mobile-recent-list"></ul>
+                    </div>
                 </div>
 
                 <div class="mobile-menu-footer">
+                    <a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>" class="mobile-cta-btn">
+                        <span>Explore The SMC Shop</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
                 </div>
-            </div>
+            </aside>
             <!-- END SMC CUSTOM HEADER -->
 
 			<?php if ( ! is_page_template( 'template-my-account.php' ) && ! is_page_template( 'template-home.php' ) && ! is_page_template( 'template-contact.php' ) && ! is_page_template( 'template-about.php' ) && ! is_page_template( 'template-assessment.php' ) ) : ?>

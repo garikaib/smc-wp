@@ -171,6 +171,7 @@ function smc_enqueue_styles() {
 
     // Enqueue Lucide Icons
     wp_enqueue_script( 'lucide-icons', 'https://unpkg.com/lucide@latest', array(), null, true );
+    wp_enqueue_script( 'smc-mobile-menu', get_stylesheet_directory_uri() . '/js/mobile-menu.js', array( 'lucide-icons' ), wp_get_theme()->get('Version'), true );
     wp_add_inline_script( 'lucide-icons', 'document.addEventListener("DOMContentLoaded", () => { lucide.createIcons(); });' );
 }
 add_action( 'wp_enqueue_scripts', 'smc_enqueue_styles' );

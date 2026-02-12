@@ -875,6 +875,246 @@ body,
     }
 }
 
+/* Mobile-First Premium Navigation Overrides */
+body.smc-mobile-menu-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+.smc-main-nav {
+    padding: 0 16px;
+    height: 74px;
+}
+
+.smc-logo-container img {
+    max-height: 40px;
+}
+
+.smc-nav-links {
+    display: none;
+}
+
+.smc-actions {
+    gap: 10px;
+}
+
+.smc-actions .smc-shop-link,
+.smc-actions .smc-login-link,
+.smc-actions .smc-learning-link,
+.smc-actions .smc-instructor-link {
+    display: none;
+}
+
+.smc-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    border: 1px solid var(--smc-border-light);
+    background: var(--smc-bg-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 0;
+}
+
+.smc-mobile-toggle:focus-visible,
+.smc-mobile-close:focus-visible,
+.smc-mobile-overlay:focus-visible {
+    outline: 2px solid var(--smc-teal);
+    outline-offset: 2px;
+}
+
+.smc-mobile-menu {
+    width: min(92vw, 420px);
+    right: 0;
+    transform: translateX(105%);
+    border-left: 1px solid var(--smc-border-light);
+    background: rgba(255, 255, 255, 0.96);
+    background: color-mix(in srgb, var(--smc-bg-surface) 88%, #ffffff 12%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.smc-mobile-menu.active {
+    transform: translateX(0);
+}
+
+.smc-mobile-overlay {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    border: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+body.smc-mobile-menu-open .smc-mobile-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.smc-mobile-search {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.smc-mobile-search input {
+    border: 1px solid var(--smc-border-light);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    background: var(--smc-bg-surface);
+    color: var(--smc-text-main);
+}
+
+.smc-mobile-search button {
+    border: 0;
+    border-radius: 12px;
+    padding: 0 14px;
+    background: linear-gradient(135deg, var(--smc-teal), #0a8d89);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smc-mobile-quick-tools {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.smc-mobile-tool-link {
+    background: var(--smc-bg-surface);
+    border: 1px solid var(--smc-border-light);
+    border-radius: 12px;
+    min-height: 74px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--smc-text-main);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.smc-mobile-tool-link i {
+    width: 18px;
+    height: 18px;
+}
+
+.smcmobile-links li {
+    margin-bottom: 10px;
+}
+
+.smcmobile-links li.menu-item-has-children {
+    position: relative;
+}
+
+.smcmobile-links li > a {
+    display: flex;
+    align-items: center;
+    padding-right: 42px;
+}
+
+.smc-submenu-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid var(--smc-border-light);
+    background: var(--smc-bg-surface);
+    color: var(--smc-text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smc-submenu-toggle i {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+
+.smcmobile-links li.submenu-open .smc-submenu-toggle i {
+    transform: rotate(180deg);
+}
+
+.smcmobile-links .sub-menu {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 8px 0 0 8px;
+    border-left: 2px solid var(--smc-border-light);
+}
+
+.smcmobile-links .sub-menu li {
+    margin-bottom: 8px;
+}
+
+.smcmobile-links .sub-menu a {
+    font-size: 14px;
+    padding: 10px;
+}
+
+.smc-mobile-recent {
+    margin-top: 18px;
+}
+
+.smc-mobile-recent-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+}
+
+.smc-mobile-recent-list li + li {
+    margin-top: 8px;
+}
+
+.smc-mobile-recent-list a {
+    display: block;
+    border: 1px solid var(--smc-border-light);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--smc-text-main);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (min-width: 1025px) {
+    .smc-main-nav {
+        padding: 0 40px;
+        height: 80px;
+    }
+
+    .smc-nav-links {
+        display: block;
+    }
+
+    .smc-actions .smc-shop-link,
+    .smc-actions .smc-login-link,
+    .smc-actions .smc-learning-link,
+    .smc-actions .smc-instructor-link {
+        display: inline-flex;
+    }
+
+    .smc-mobile-toggle,
+    .smc-mobile-menu,
+    .smc-mobile-overlay {
+        display: none !important;
+    }
+}
+
 /* ===========================
    Theme Toggle Floating Button
    =========================== */
@@ -2149,6 +2389,7 @@ textarea:focus,
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .cta-card-premium::before {
@@ -2187,6 +2428,44 @@ textarea:focus,
     color: var(--smc-text-muted);
     margin-bottom: 35px;
     line-height: 1.7;
+}
+
+/* Plan Benefits List */
+.smc-plan-benefits-sidebar {
+    text-align: left;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--smc-border-light);
+}
+
+.smc-plan-benefits-sidebar h4 {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--smc-teal);
+    margin-bottom: 20px;
+}
+
+.smc-benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.smc-benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--smc-text-muted);
+    margin-bottom: 12px;
+}
+
+.smc-benefits-list li i {
+    color: var(--smc-teal);
+    width: 18px;
+    height: 18px;
 }
 
 /* Tags */

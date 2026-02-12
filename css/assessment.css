@@ -83,6 +83,33 @@
     padding-top: 60px;
 }
 
+.page-template-template-assessment .smc-assessment-wrapper {
+    padding-top: 0;
+}
+
+.page-template-template-assessment .fusion-page-title-bar,
+.page-template-template-assessment .fusion-page-title-bar-wrapper {
+    display: none !important;
+}
+
+.page-template-template-assessment #main,
+.page-template-template-assessment #content,
+.page-template-template-assessment .fusion-row {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.page-template-template-assessment #smc-wrapper,
+.page-template-template-assessment .smc-assessment-page,
+.page-template-template-assessment .smc-assessment-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.page-template-template-assessment .smc-assessment-container > :first-child {
+    margin-top: 0 !important;
+}
+
 .smc-assessment-container {
     max-width: 1440px;
     /* Aligned with other full-width pages */

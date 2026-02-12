@@ -25,6 +25,22 @@ $categories       = get_the_category();
 if (!$featured_img_url) {
     $featured_img_url = get_stylesheet_directory_uri() . '/assets/img/default-article-bg.jpg';
 }
+
+// User Assessment Status Logic
+$is_assessed = false;
+$user_id = get_current_user_id();
+if ($user_id) {
+    global $wpdb;
+    $table = $wpdb->prefix . 'smc_quiz_submissions';
+    $table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table));
+    if ($table_exists) {
+        $submission = $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) FROM $table WHERE user_id = %d",
+            $user_id
+        ));
+        $is_assessed = ($submission > 0);
+    }
+}
 ?>
 
 <style>
@@ -126,11 +142,34 @@ if (!$featured_img_url) {
                 <aside class="smc-article-sticky-sidebar right">
                     <div class="cta-card-premium" data-gsap-reveal="right">
                         <div class="cta-icon-wrapper">
-                            <i data-lucide="sparkles"></i>
+                            <i data-lucide="<?php echo $is_assessed ? 'shopping-bag' : 'sparkles'; ?>"></i>
                         </div>
-                        <h3>Deep Business Science</h3>
-                        <p>Join the elite African business leaders who use SMC data to scale their operations.</p>
-                        <a href="<?php echo home_url('/assessment/'); ?>" class="smc-btn smc-btn-teal-outline">View Assessments</a>
+                        
+                        <?php if (!$is_assessed) : ?>
+                            <h3>Deep Business Science</h3>
+                            <p>Join the elite African business leaders who use SMC data to scale their operations.</p>
+                            <a href="<?php echo home_url('/assessment/'); ?>" class="smc-btn smc-btn-teal-outline">View Assessments</a>
+                        <?php else : ?>
+                            <h3>Exclusive Materials</h3>
+                            <p>Browse our curated shop for advanced training materials and specialized business tools.</p>
+                            <a href="<?php echo home_url('/shop/'); ?>" class="smc-btn smc-btn-teal-outline">Visit Shop</a>
+                            <div style="margin-top: 15px; font-size: 13px; color: var(--smc-text-muted);">
+                                <i data-lucide="book-open" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i>
+                                Premium training available
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- Basic Plan Benefits Upsell -->
+                        <div class="smc-plan-benefits-sidebar">
+                            <h4>Basic Plan Benefits</h4>
+                            <ul class="smc-benefits-list">
+                                <li><i data-lucide="check-circle-2"></i> SMC Core Library Access</li>
+                                <li><i data-lucide="check-circle-2"></i> Monthly Strategy Check-ins</li>
+                                <li><i data-lucide="check-circle-2"></i> 24-hour Priority Support</li>
+                                <li><i data-lucide="check-circle-2"></i> Private Networking Group</li>
+                                <li><i data-lucide="check-circle-2"></i> 15% Workshop Discounts</li>
+                            </ul>
+                        </div>
                     </div>
                 </aside>
 

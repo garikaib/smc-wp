@@ -102,7 +102,7 @@ $is_builder = ( function_exists( 'fusion_is_preview_frame' ) && fusion_is_previe
                 <div class="smc-footer-bottom">
                     <div class="smc-footer-container">
                         <div class="footer-copyright">
-                            &copy; <?php echo date('Y'); ?> Social Marketing Centre. All rights reserved.
+                            &copy; <?php echo date('Y'); ?> Social Marketing Centre. All rights reserved. Design &amp; Built by <a href="https://zimpricecheck.com" target="_blank" rel="noopener noreferrer">Zimpricecheck</a>
                         </div>
                         <div class="footer-bottom-links">
                             <a href="/privacy-policy">Privacy Policy</a>
