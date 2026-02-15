@@ -23,7 +23,7 @@ $categories       = get_the_category();
 
 // Fallback image if featured is missing
 if (!$featured_img_url) {
-    $featured_img_url = get_stylesheet_directory_uri() . '/assets/img/default-article-bg.jpg';
+    $featured_img_url = home_url('/wp-content/uploads/2026/01/smc_logo_cropped-1.png');
 }
 
 // User Assessment Status Logic
