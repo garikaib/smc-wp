@@ -83,12 +83,13 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
 
                          <?php if ( is_user_logged_in() ) : 
                              $current_user = wp_get_current_user();
+                             $can_access_instructor_hub = in_array( 'administrator', (array) $current_user->roles, true ) || in_array( 'editor', (array) $current_user->roles, true );
                          ?>
                              <a href="<?php echo esc_url( home_url( '/learning/' ) ); ?>" class="smc-learning-link" title="My Learning">
                                  <i data-lucide="book-open"></i>
                              </a>
                              
-                             <?php if ( current_user_can( 'manage_options' ) ) : ?>
+                             <?php if ( $can_access_instructor_hub ) : ?>
                                  <a href="<?php echo esc_url( home_url( '/instructor/' ) ); ?>" class="smc-instructor-link" title="Instructor Hub">
                                      <i data-lucide="layout-dashboard"></i>
                                  </a>
@@ -132,7 +133,7 @@ $wrapper_class .= ( is_page_template( 'blank.php' ) ) ? ' wrapper_blank' : '';
                                 </div>
                             </div>
                             <a href="<?php echo esc_url( home_url( '/learning/' ) ); ?>" class="profile-link-btn">My Learning <i data-lucide="book-open"></i></a>
-                            <?php if ( current_user_can( 'manage_options' ) ) : ?>
+                            <?php if ( $can_access_instructor_hub ) : ?>
                                 <a href="<?php echo esc_url( home_url( '/instructor/' ) ); ?>" class="profile-link-btn">Instructor Hub <i data-lucide="layout-dashboard"></i></a>
                             <?php endif; ?>
                             <a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>" class="profile-link-btn">Account Settings <i data-lucide="user"></i></a>
